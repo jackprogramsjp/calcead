@@ -55,6 +55,13 @@ impl Lexer {
     }
 }
 
+macro_rules! advance_token {
+    ($self:ident, $tok:expr) => {{
+        $self.advance();
+        Some(Ok($tok))
+    }};
+}
+
 impl Iterator for Lexer {
     type Item = Result<Token, String>;
 
@@ -64,15 +71,19 @@ impl Iterator for Lexer {
                 self.advance();
                 self.next()
             }
-            
-
+            Some('+') => advance_token!(self, Token::Plus),
+            Some('-') => advance_token!(self, Token::Minus),
+            Some('*') => advance_token!(self, Token::Multiply),
+            Some('/') => advance_token!(self, Token::Divide),
+            Some('(') => advance_token!(self, Token::Lparen),
+            Some(')') => advance_token!(self, Token::Rparen),
             Some(c) => {
                 if c.is_digit(10) {
                     Some(Ok(self.gen_number()))
                 } else {
                     Some(Err(format!("Illegal character '{}'", c)))
                 }
-            },
+            }
             None => None,
         }
     }
