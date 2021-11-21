@@ -20,5 +20,6 @@ then
 fi
 
 # Download
+rm -rf /usr/local/bin/calcead # Make sure calcead is removed before installing it with curl
 curl -f -L https://github.com/jackprogramsjp/calcead/releases/download/v0.1.0/calcead -o /usr/local/bin/calcead && echo "Successfully installed." || echo "Failed to install with curl."
 chmod +x /usr/local/bin/calcead # make executable be able to execute
