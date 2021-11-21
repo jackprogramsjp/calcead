@@ -20,6 +20,5 @@ then
 fi
 
 # Download
-curl https://github.com/jackprogramsjp/calcead/releases/download/v0.1.0/calcead -o /usr/local/bin/calcead
-
-echo Successfully installed.
+curl -f -L https://github.com/jackprogramsjp/calcead/releases/download/v0.1.0/calcead -o /usr/local/bin/calcead && echo "Successfully installed." || echo "Failed to install with curl."
+chmod +x /usr/local/bin/calcead # make executable be able to execute

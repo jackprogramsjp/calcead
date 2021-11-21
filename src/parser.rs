@@ -96,7 +96,7 @@ impl Parser {
                         let result = self.expr();
 
                         if let Some(current_token) = self.current {
-                            if current_token != Lparen {
+                            if current_token != Rparen {
                                 return Err(Self::raise_error());
                             }
                         } else {
